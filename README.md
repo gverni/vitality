@@ -1,6 +1,6 @@
 DISCLAIMER: THIS PROJECT IS NOT ENDORSED IN ANY WAY BY VITALITY 
 
-# vitality
+# Vitality chrome extension 
 Chrome extension to create stats from Vitality point statement. This extension aims to use the data in the point statement to create better stats. 
 
 # Roadmap
