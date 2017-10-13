@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	    xhr.open('GET', urlStatement.replace('&member=', '&member=' + result ), true)
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
-				elOutput.innerHTML = xhr.response
+				var elTmp = document.createElement('DIV')
+				elTmp.innerHTML = xhr.response
+				var records = elTmp.querySelectorAll('li')
+				console.log(records)
+				document.getElementById("output").innerHTML = "Done!"
 			}
 		}
 		xhr.send()
