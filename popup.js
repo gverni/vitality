@@ -3,6 +3,7 @@ var objPoints = {}
 
 // Returns the ISO week of the date.
 Date.prototype.getWeek = function() {
+
   var date = new Date(this.getTime());
    date.setHours(0, 0, 0, 0);
   // Thursday in current week decides the year.
@@ -20,11 +21,17 @@ const thisYear = (new Date()).getFullYear()
 function createWeekStats(weekNo) {
 	
 	var tmpDiv = document.createElement('DIV')
-	Object.getOwnPropertyNames(objPoints).forEach( function (key) {
-		var totWeek = objPoints[key][weekNo].reduce( function (a, b) { return { Points: a['Points'] + b['Points'] }} )['Points']
-		var newP = document.createElement('P') 
-		tmpDiv.appendChild(newP) 
-		newP.innerHTML = key + ": week " + weekNo + ": " + totWeek + " point(s)"
+	Object.getOwnPropertyNames(objPoints).forEach( function (user) {
+		if (objPoints[user].hasOwnProperty(weekNo)) {
+			var totWeek = objPoints[user][weekNo].reduce( function (a, b) { return { Points: a['Points'] + b['Points'] }} )['Points']
+			var newP = document.createElement('P') 
+			tmpDiv.appendChild(newP) 
+			newP.innerHTML = user + ": week " + weekNo + ": " + totWeek + " point(s)"
+		} else {
+			var newP = document.createElement('P') 
+			tmpDiv.appendChild(newP) 
+			newP.innerHTML = user + ": week " + weekNo + ": 0 point(s)"
+		}
 	})
 
 	return tmpDiv
@@ -60,7 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
 				convertRecordsToObj(xhr.response) 
+				elOutput.innerHTML = ''	
 				elOutput.appendChild(createWeekStats(thisWeekNo))
+				// TODO: Handle first week of the year 
+				elOutput.appendChild(createWeekStats(thisWeekNo-1))
 				console.log(objPoints)
 			}
 		}
