@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Vitality Chrome Extension</title>
+	<script src="../libs/tinycolor/tinycolor-min.js"></script>
+	<script src="../libs/tinygradient/tinygradient.min.js"></script>
+	<script src="../js/modules/gradientGauge.js"></script> 
+	<style>
+	body {
+		margin: 0; 
+	}
+	
+	</style>
+  </head>
+  <body>
+   <div id='popupsize' style = "min-width: 300px">
+    <div id="top"><img src="../images/top.jpg"></div>
+	<div id="bigGauge"></div>
+	<div id="smallGauge" style="position: absolute;top:260px;left:180px;"></div>
+  </div>
+  <script src="../js/popup.js"></script>
+  <script>
+
+	var myGauge = new gradientGauge(160)
+	myGauge.buildGauge(document.getElementById("bigGauge"))
+	myGauge.startAnimation(60)
+	
+	var myGauge = new gradientGauge(100)
+	myGauge.buildGauge(document.getElementById("smallGauge"))
+	myGauge.startAnimation(40)
+
+  </script> 	
+  </body>
+</html>
+
