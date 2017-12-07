@@ -18,6 +18,21 @@ Date.prototype.getWeek = function() {
 const thisWeekNo = (new Date()).getWeek()
 const thisYear = (new Date()).getFullYear()
 
+function getWeeklypoints(weekNo) {
+
+	var totWeek = 0 
+	
+	Object.getOwnPropertyNames(objPoints).forEach( function (user) {
+		if (objPoints[user].hasOwnProperty(weekNo)) {
+			totWeek = objPoints[user][weekNo].reduce( function (a, b) { return { Points: a['Points'] + b['Points'] }} )['Points']
+		} 
+	})
+	
+	console.log("point for week " + weekNo + "= " + totWeek)
+	return totWeek 
+
+}
+
 function createWeekStats(weekNo) {
 	
 	var tmpDiv = document.createElement('DIV')
@@ -61,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	chrome.tabs.executeScript({
 		code: '(function () {return document.getElementById("membershipnumberlabel").textContent})()' 
 	}, function (result) {
-		var elOutput = document.getElementById('output')
 		var xhr = new XMLHttpRequest()
 		xhr.open('GET', urlStatement.replace('&member=', '&member=' + result ), true)
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
-				convertRecordsToObj(xhr.response) 
-				elOutput.innerHTML = ''	
-				elOutput.appendChild(createWeekStats(thisWeekNo))
+				convertRecordsToObj(xhr.response)
+				bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
+				
 				// TODO: Handle first week of the year 
-				elOutput.appendChild(createWeekStats(thisWeekNo-1))
+				smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
+				
 				console.log(objPoints)
 			}
 		}
@@ -79,3 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
    
 });
+
+	var bigGauge = new gradientGauge(160)
+	bigGauge.buildGauge(document.getElementById("bigGauge"))
+	
+	var smallGauge = new gradientGauge(100)
+	smallGauge.buildGauge(document.getElementById("smallGauge"))
+
+

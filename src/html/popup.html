@@ -7,7 +7,8 @@
 	<script src="../js/modules/gradientGauge.js"></script> 
 	<style>
 	body {
-		margin: 0; 
+		margin: 30; 
+		height: 500px; 
 	}
 	
 	</style>
@@ -19,17 +20,18 @@
 	<div id="smallGauge" style="position: absolute;top:260px;left:180px;"></div>
   </div>
   <script src="../js/popup.js"></script>
-  <script>
+ <!-- <script>
 
+ 
 	var myGauge = new gradientGauge(160)
 	myGauge.buildGauge(document.getElementById("bigGauge"))
-	myGauge.startAnimation(60)
+ 	myGauge.startAnimation(60)
 	
 	var myGauge = new gradientGauge(100)
 	myGauge.buildGauge(document.getElementById("smallGauge"))
-	myGauge.startAnimation(40)
-
-  </script> 	
+	myGauge.startAnimation(40)  
+	
+  </script> -->
   </body>
 </html>
 
