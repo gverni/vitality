@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (xhr.readyState === 4) {
 				if (xhr.status === 200) {
 					convertRecordsToObj(xhr.response)
+					document.getElementById("nameBaloonSvg").children[1].innerHTML  = Object.getOwnPropertyNames(objPoints)[0]
 					bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
 					// TODO: Handle first week of the year 
 					smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
@@ -89,8 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					console.log(objPoints)
 					
 				} else {
-					
-					console.log("demo")
+					document.getElementById("nameBaloonSvg").children[1].innerHTML = "demo"
 					bigGauge.startAnimation(70)
 					// TODO: Handle first week of the year 
 					smallGauge.startAnimation(45) 
