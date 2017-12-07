@@ -35,7 +35,6 @@ function gradientGauge (size) {
 		svgElem.setAttribute("width", this.size)
 		svgElem.setAttribute("height", this.size)
 		svgElem.setAttribute("viewBox", "0 0 " + this.size + " " + this.size)
-		svgElem.setAttribute("enable-background", "new 0 0 " + this.size + " " + this.size)
 		svgElem.setAttribute("xml:space","preserve")
 		
 		var outerCircleElem = document.createElementNS("http://www.w3.org/2000/svg", "circle")
@@ -61,9 +60,9 @@ function gradientGauge (size) {
 		} 
 
 		var rewardIconElem = document.createElementNS("http://www.w3.org/2000/svg", "image")
-		rewardIconElem.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "../images/coffecup.gif")
-		rewardIconElem.setAttribute("height", this.size / 4)
-		rewardIconElem.setAttribute("width", this.size / 4)
+		rewardIconElem.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "../images/coffecup_off.svg")
+		rewardIconElem.setAttribute("height", this.size)
+		rewardIconElem.setAttribute("width", this.size)
 		rewardIconElem.setAttribute("x", (this.size - rewardIconElem.getAttribute("width")) / 2)
 		rewardIconElem.setAttribute("y", (this.size - rewardIconElem.getAttribute("height")) / 2)
 		// rewardIconElem.setAttribute("preserveAspectRatio", "")
@@ -78,14 +77,21 @@ function gradientGauge (size) {
 		logGauge("animateGauge step " + animationProgress + " of " + this.points)
 		svgElem.children[animationProgress + 1].setAttribute("stroke", arGradient[animationProgress].toHexString() )
 		if (animationProgress === 26) {
-			let rewardIconElem = svgElem.querySelectorAll("image")[0]
 			var rewardCircleElem = document.createElementNS("http://www.w3.org/2000/svg", "circle")
 			rewardCircleElem.setAttribute("cx", this.size / 2)
 			rewardCircleElem.setAttribute("cy", this.size / 2)
-			rewardCircleElem.setAttribute("r", this.size / 6)
+			rewardCircleElem.setAttribute("r", this.size / 5)
 			rewardCircleElem.setAttribute("fill", "rgb(255, 255, 0)")
 			svgElem.appendChild(rewardCircleElem)
-			svgElem.appendChild(rewardIconElem)
+			
+			var rewardIconElem = document.createElementNS("http://www.w3.org/2000/svg", "image")
+			rewardIconElem.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "../images/coffecup_on.svg")
+			rewardIconElem.setAttribute("height", this.size)
+			rewardIconElem.setAttribute("width", this.size)
+			rewardIconElem.setAttribute("x", (this.size - rewardIconElem.getAttribute("width")) / 2)
+			rewardIconElem.setAttribute("y", (this.size - rewardIconElem.getAttribute("height")) / 2)
+			svgElem.appendChild(rewardIconElem)	
+
 			
 			/* rewardIconElem.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "../images/reward_on.jpg")
 			rewardIconElem.innerHTML = '<animate attributeType="XML" attributeName="width" from="40" to="60" dur="2s" repeatCount="indefinite"/>' */

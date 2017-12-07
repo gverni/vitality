@@ -80,13 +80,23 @@ document.addEventListener('DOMContentLoaded', function() {
 		xhr.open('GET', urlStatement.replace('&member=', '&member=' + result ), true)
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
-				convertRecordsToObj(xhr.response)
-				bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
+				if (xhr.status === 200) {
+					convertRecordsToObj(xhr.response)
+					bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
+					// TODO: Handle first week of the year 
+					smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
 				
-				// TODO: Handle first week of the year 
-				smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
-				
-				console.log(objPoints)
+					console.log(objPoints)
+					
+				} else {
+					
+					console.log("demo")
+					bigGauge.startAnimation(70)
+					// TODO: Handle first week of the year 
+					smallGauge.startAnimation(45) 
+					
+				}
+
 			}
 		}
 		xhr.send()
