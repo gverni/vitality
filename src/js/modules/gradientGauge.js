@@ -47,7 +47,6 @@ function gradientGauge (size) {
 		
 		for (let i=0; i < this.numBars; i++) {
 			let lineElem = document.createElementNS("http://www.w3.org/2000/svg", "line")
-			let color = "grey"
 			lineElem.setAttribute("stroke", "rgb(256, 256, 256)")
 			lineElem.setAttribute("stroke-width", "2")
 			lineElem.setAttribute("x1",this.size / 2) // 100
