@@ -51,9 +51,9 @@ function gradientGauge (size) {
 			lineElem.setAttribute("stroke", "rgb(256, 256, 256)")
 			lineElem.setAttribute("stroke-width", "2")
 			lineElem.setAttribute("x1",this.size / 2) // 100
-			lineElem.setAttribute("y1", this.size / 20) // 5
+			lineElem.setAttribute("y1", this.size / 17.27) // 5
 			lineElem.setAttribute("x2", this.size / 2) // 100 
-			lineElem.setAttribute("y2", this.size / 8) // 25 
+			lineElem.setAttribute("y2", this.size / 10) // 25 
 			//lineElem.setAttribute("transform", "rotate(" + 360/this.numBars * i + ", 100, 100)")
 			lineElem.setAttribute("transform", "rotate(" + 360/this.numBars * i + ", " + this.size / 2 + ", " + this.size / 2 + ")")
 			svgElem.appendChild(lineElem)

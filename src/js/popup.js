@@ -90,11 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					console.log(objPoints)
 					
 				} else {
-					document.getElementById("nameBaloonSvg").children[1].innerHTML = "demo"
-					document.body.style.height = "540px"
-					document.getElementById("notifications").innerHTML = '<p>This is only a demo because you are not logged into Vitality. Use the button below to open the login page. After you log in, press the extension button again.</p><p><a href="https://member.vitality.co.uk/Login" target="_blank" class="btn-pay-now"><span>LOG IN</span></a>'
+					document.getElementById("nameBaloonSvg").children[1].innerHTML = "Demo"
+					document.getElementById("notifications").innerHTML = '<p>You are not logged into Vitality. Use the button below to open the login page.</p><p><a href="https://member.vitality.co.uk/Login" target="_blank" class="btn-pay-now"><span>LOG IN</span></a>'
 					bigGauge.startAnimation(70)
-					// TODO: Handle first week of the year 
 					smallGauge.startAnimation(45) 
 					
 				}
@@ -107,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
 });
 
-	var bigGauge = new gradientGauge(160)
+	var bigGauge = new gradientGauge(190)
 	bigGauge.buildGauge(document.getElementById("bigGauge"))
 	
 	var smallGauge = new gradientGauge(100)
