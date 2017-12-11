@@ -50,16 +50,3 @@ function gradientBar (startPosX, startPosY, maxPoints) {
 	}
 	
 }
-
-
-/* 
-
-<line stroke="rgb(255, 130, 182)" stroke-width="4" x1="2" y1="72" x2="2" y2="72"><animate attributeType="XML" attributeName="y1" from="72" to="32" dur="2s" repeatCount="0" begin="1000ms" fill="freeze">
-</animate>
-		  <animate attributeType="XML" attributeName="stroke" from="rgb(255, 130, 182)" to="rgb(251, 218, 97)" dur="2s" repeatCount="0" begin="1000ms" fill="freeze"> 
-      
-		</line
-
-
-
-*/ 
