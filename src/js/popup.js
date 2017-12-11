@@ -90,44 +90,34 @@ document.addEventListener('DOMContentLoaded', function() {
 					smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
 					
 					// Build past week graph
-					let pastWeekGraphSvg = document.getElementById("pastGraph") 
-					var bootomGraphInterval = setInterval(function() {
-							let barNo = document.getElementById("pastGraph").querySelectorAll("line").length
-							if ( barNo < 30 ) {
-								
+					let groupElem = animateElem = document.createElementNS("http://www.w3.org/2000/svg", "g")
+					for (let barNo = 0; barNo < 30; barNo++) {
+							
 								let weeklyPoints = getWeeklypoints(thisWeekNo-barNo)
 															
 								let barElem = document.createElementNS("http://www.w3.org/2000/svg", "line")
 								barElem.setAttribute("stroke", "rgb(255, 130, 182)")
 								barElem.setAttribute("stroke-width", "4")
 								barElem.setAttribute("x1", barNo * 10 + 2) 
-								barElem.setAttribute("y1", 72 - weeklyPoints) 
+								barElem.setAttribute("y1", 72) 
 								barElem.setAttribute("x2", barNo * 10 + 2) 
 								barElem.setAttribute("y2", 72) 
 								let animateElem = document.createElementNS("http://www.w3.org/2000/svg", "animate")
-								/* animateElem.setAttributeNS("http://www.w3.org/2000/svg", "attributeType", "XML")
-								animateElem.setAttributeNS("http://www.w3.org/2000/svg", "attributeName", "y1")
-								animateElem.setAttributeNS("http://www.w3.org/2000/svg", "from", "71")
-								animateElem.setAttributeNS("http://www.w3.org/2000/svg", "to", 72 - getWeeklypoints(thisWeekNo-barNo)) 
-								animateElem.setAttributeNS("http://www.w3.org/2000/svg", "dur", "2s") 
-								animateElem.setAttributeNS("http://www.w3.org/2000/svg", "repeatCount", "1") */ 
 								animateElem.setAttribute("attributeType", "XML")
 								animateElem.setAttribute("attributeName", "y1")
-								animateElem.setAttribute("from", "71")
+								animateElem.setAttribute("from", "72")
 								animateElem.setAttribute("to", 72 - weeklyPoints) 
-								animateElem.setAttribute("dur", "4s") 
+								animateElem.setAttribute("dur", "2s") 
 								animateElem.setAttribute("repeatCount", "0") 
-								animateElem.setAttribute("begin", (barNo) + "s") 
+								animateElem.setAttribute("begin", ((barNo * 100) + 1000) + "ms") 
+								animateElem.setAttribute("fill", "freeze") 
 								
 								barElem.appendChild(animateElem)
-								document.getElementById("pastGraph").appendChild(barElem)
+								groupElem.appendChild(barElem)
 								
-							} else {
-								clearInterval(bootomGraphInterval)
-							}
-
-					}, 100)
-									
+					}
+					document.getElementById("pastGraph").appendChild(groupElem)
+					
 				} else {
 					document.getElementById("nameBaloonSvg").children[1].innerHTML = "Demo"
 					document.getElementById("notifications").innerHTML = '<p>You are not logged into Vitality. Use the button below to open the login page.</p><p><a href="https://member.vitality.co.uk/Login" target="_blank" class="btn-pay-now"><span>LOG IN</span></a>'
