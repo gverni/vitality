@@ -106,9 +106,11 @@ function gradientGauge (size) {
 	}
 	
 	this.startAnimation = function (points) {
-		this.points = points 
-		logGauge("Start Animation for " + this.points + " delay " + this.animationStartDelay)
-		setTimeout(animateGauge.bind(this), this.animationStartDelay);
+		if (points > 0) {
+			this.points = points 
+			logGauge("Start Animation for " + this.points + " delay " + this.animationStartDelay)
+			setTimeout(animateGauge.bind(this), this.animationStartDelay);
+		}
 	
 	}
   
