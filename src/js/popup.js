@@ -91,29 +91,10 @@ document.addEventListener('DOMContentLoaded', function() {
 					
 					// Build past week graph
 					let groupElem = animateElem = document.createElementNS("http://www.w3.org/2000/svg", "g")
+					pastGraphBars = new gradientBar(0, 72, 40)
 					for (let barNo = 0; barNo < 30; barNo++) {
 							
-								let weeklyPoints = getWeeklypoints(thisWeekNo-barNo)
-															
-								let barElem = document.createElementNS("http://www.w3.org/2000/svg", "line")
-								barElem.setAttribute("stroke", "rgb(255, 130, 182)")
-								barElem.setAttribute("stroke-width", "4")
-								barElem.setAttribute("x1", barNo * 10 + 2) 
-								barElem.setAttribute("y1", 72) 
-								barElem.setAttribute("x2", barNo * 10 + 2) 
-								barElem.setAttribute("y2", 72) 
-								let animateElem = document.createElementNS("http://www.w3.org/2000/svg", "animate")
-								animateElem.setAttribute("attributeType", "XML")
-								animateElem.setAttribute("attributeName", "y1")
-								animateElem.setAttribute("from", "72")
-								animateElem.setAttribute("to", 72 - weeklyPoints) 
-								animateElem.setAttribute("dur", "2s") 
-								animateElem.setAttribute("repeatCount", "0") 
-								animateElem.setAttribute("begin", ((barNo * 100) + 1000) + "ms") 
-								animateElem.setAttribute("fill", "freeze") 
-								
-								barElem.appendChild(animateElem)
-								groupElem.appendChild(barElem)
+						groupElem.appendChild(pastGraphBars.generateBar(getWeeklypoints(thisWeekNo - barNo)))
 								
 					}
 					document.getElementById("pastGraph").appendChild(groupElem)
