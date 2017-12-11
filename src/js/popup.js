@@ -21,14 +21,14 @@ const thisYear = (new Date()).getFullYear()
 function getWeeklypoints(weekNo) {
 
 	var totWeek = 0 
-	
-	Object.getOwnPropertyNames(objPoints).forEach( function (user) {
-		if (objPoints[user].hasOwnProperty(weekNo)) {
-			totWeek = objPoints[user][weekNo].reduce( function (a, b) { return { Points: a['Points'] + b['Points'] }} )['Points']
-		} 
-	})
-	
-	console.log("point for week " + weekNo + "= " + totWeek)
+
+	// TODO: plot more than one user. Currently this is plotting only the first user  
+	let user = Object.getOwnPropertyNames(objPoints)[0]
+	if (objPoints[user].hasOwnProperty(weekNo)) {
+		totWeek = objPoints[user][weekNo].reduce( function (a, b) { return { Points: a['Points'] + b['Points'] }} )['Points']
+	} 
+
+	console.log("Point for week " + weekNo + "= " + totWeek)
 	return totWeek 
 
 }
@@ -68,6 +68,7 @@ function convertRecordsToObj ( strDOM ) {
 			objPoints[firstName][dateWeekNo].push({ Name: firstName, Date: elDate.textContent + ' ' + thisYear, WeekNo: parseInt(dateWeekNo), Points: parseInt(elPoints[index].textContent) })
 		}
 	})
+	console.log(objPoints)
 
 }
 
@@ -115,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
 								animateElem.setAttribute("from", "71")
 								animateElem.setAttribute("to", 72 - weeklyPoints) 
 								animateElem.setAttribute("dur", "4s") 
-								animateElem.setAttribute("repeatCount", "1") 
+								animateElem.setAttribute("repeatCount", "0") 
+								animateElem.setAttribute("begin", (barNo) + "s") 
+								
 								barElem.appendChild(animateElem)
 								document.getElementById("pastGraph").appendChild(barElem)
 								
