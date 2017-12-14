@@ -28,7 +28,6 @@ function getWeeklypoints(weekNo) {
 		totWeek = objPoints[user][weekNo].reduce( function (a, b) { return { Points: a['Points'] + b['Points'] }} )['Points']
 	} 
 
-	console.log("Point for week " + weekNo + "= " + totWeek)
 	return totWeek 
 
 }
@@ -59,6 +58,7 @@ function convertRecordsToObj ( strDOM ) {
 	var elDates = elTmp.querySelectorAll('.date')
 	var elFirstNames = elTmp.querySelectorAll('.firstname')
 	var elPoints = elTmp.querySelectorAll('.points')
+	var elPoints = elTmp.querySelectorAll('.points')
 	elDates.forEach( function (elDate, index) {
 		var dateWeekNo = (new Date(elDate.textContent + " " + thisYear)).getWeek()
 		var firstName =  elFirstNames[index].textContent
@@ -68,57 +68,70 @@ function convertRecordsToObj ( strDOM ) {
 			objPoints[firstName][dateWeekNo].push({ Name: firstName, Date: elDate.textContent + ' ' + thisYear, WeekNo: parseInt(dateWeekNo), Points: parseInt(elPoints[index].textContent) })
 		}
 	})
-	console.log(objPoints)
 
 }
 
+function fetchStatement() {
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-	chrome.tabs.executeScript({
-		code: '(function () {return document.getElementById("membershipnumberlabel").textContent})()' 
-	}, function (result) {
-		var xhr = new XMLHttpRequest()
-		xhr.open('GET', urlStatement.replace('&member=', '&member=' + result ), true)
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				if (xhr.status === 200) {
-					convertRecordsToObj(xhr.response)
-					document.getElementById("nameBaloonSvg").children[1].innerHTML  = Object.getOwnPropertyNames(objPoints)[0]
-					bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
-					// TODO: Handle first week of the year 
-					smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
-					
-					// Build past week graph
-					let groupElem = animateElem = document.createElementNS("http://www.w3.org/2000/svg", "g")
-					pastGraphBars = new gradientBar(0, 72, 40)
-					for (let barNo = 0; barNo < 30; barNo++) {
-							
-						groupElem.appendChild(pastGraphBars.generateBar(getWeeklypoints(thisWeekNo - barNo)))
+			var xhrFetchData = new XMLHttpRequest()
+			xhrFetchData.open('GET', urlStatement, true)
+			xhrFetchData.onreadystatechange = function () {
+				if (xhrFetchData.readyState === 4) {
+					if (xhrFetchData.status === 200) {
+						convertRecordsToObj(xhrFetchData.response)
+						document.getElementById("userName").innerHTML  = Object.getOwnPropertyNames(objPoints)[0]
+						document.getElementById("spinner").setAttribute("visibility", "hidden")
+						
+						bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
+						// TODO: Handle first week of the year 
+						smallGauge.startAnimation(getWeeklypoints(thisWeekNo-1) * 2) 
+						
+						// Build past week graph
+						let groupElem = animateElem = document.createElementNS("http://www.w3.org/2000/svg", "g")
+						pastGraphBars = new gradientBar(0, 72, 40)
+						pastGraphBars.animationStartDelay = 2000
+						for (let barNo = 0; barNo < 30; barNo++) {
 								
-					}
-					document.getElementById("pastGraph").appendChild(groupElem)
+							groupElem.appendChild(pastGraphBars.generateBar(getWeeklypoints(thisWeekNo - barNo)))
+									
+						}
+						document.getElementById("pastGraph").appendChild(groupElem)
+					} else {
+						document.getElementById("nameBaloonSvg").children[1].innerHTML = "Demo"
+						document.getElementById("notifications").innerHTML = '<p>You are not logged into Vitality. Use the button below to open the login page.</p><p><a href="https://member.vitality.co.uk/Login" target="_blank" class="btn-pay-now"><span>LOG IN</span></a>'
+						bigGauge.startAnimation(70)
+						smallGauge.startAnimation(45) 
 					
-				} else {
-					document.getElementById("nameBaloonSvg").children[1].innerHTML = "Demo"
-					document.getElementById("notifications").innerHTML = '<p>You are not logged into Vitality. Use the button below to open the login page.</p><p><a href="https://member.vitality.co.uk/Login" target="_blank" class="btn-pay-now"><span>LOG IN</span></a>'
-					bigGauge.startAnimation(70)
-					smallGauge.startAnimation(45) 
+					}
 					
 				}
-
 			}
-		}
-		xhr.send()
-		
-	})
-   
-});
-
-	var bigGauge = new gradientGauge(190)
-	bigGauge.buildGauge(document.getElementById("bigGauge"))
+			xhrFetchData.send()
 	
-	var smallGauge = new gradientGauge(100)
-	smallGauge.buildGauge(document.getElementById("smallGauge"))
+}
 
+function logIn() {
+	
+	var xhrLogin = new XMLHttpRequest()
+	xhrLogin.open('POST', "https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=****", true)
+	xhrLogin.setRequestHeader("Content-type", "application/json;charset=UTF-8")
+	xhrLogin.onreadystatechange = function () {
+		if (xhrLogin.readyState === 4) {
+			fetchStatement()
+		}
+	}
+	xhrLogin.send('{UserName: "****", Password: "****", RememberMe: false, RedirectToItemPath: "/"}')
+	
+}
+
+
+var bigGauge = new gradientGauge(190)
+bigGauge.animationStartDelay = 300 // Delay needed because otherwise Pain event is not called everytime the interval event is fired 
+bigGauge.buildGauge(document.getElementById("bigGauge"))
+
+var smallGauge = new gradientGauge(100)
+smallGauge.animationStartDelay = 500  
+smallGauge.buildGauge(document.getElementById("smallGauge"))
+
+logIn()
 

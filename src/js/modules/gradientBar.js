@@ -3,6 +3,7 @@ function gradientBar (startPosX, startPosY, maxPoints) {
 	this.maxPoints = maxPoints
 	this.startPosX = startPosX
 	this.startPosY = startPosY
+	this.animationStartDelay = 0 
 	var barNo = 0 
 	var arGradient = tinygradient([
 		{r: 255, g: 90, b: 205},
@@ -11,6 +12,7 @@ function gradientBar (startPosX, startPosY, maxPoints) {
 
 	this.generateBar = function (points) {
 		
+		var barStartDelay =  ((barNo * 100) + this.animationStartDelay) + "ms"
 		let weeklyPoints = getWeeklypoints(thisWeekNo-barNo)
 		let barElem = document.createElementNS("http://www.w3.org/2000/svg", "line")
 		barElem.setAttribute("stroke", arGradient[0].toHexString())
@@ -26,7 +28,7 @@ function gradientBar (startPosX, startPosY, maxPoints) {
 		animateElem.setAttribute("to", this.startPosY - points) 
 		animateElem.setAttribute("dur", "2s") 
 		animateElem.setAttribute("repeatCount", "0") 
-		animateElem.setAttribute("begin", ((barNo * 100) + 1000) + "ms") 
+		animateElem.setAttribute("begin", barStartDelay) 
 		animateElem.setAttribute("fill", "freeze") 
 		let animateColor = document.createElementNS("http://www.w3.org/2000/svg", "animate")
 		animateColor.setAttribute("attributeType", "XML")
@@ -35,7 +37,7 @@ function gradientBar (startPosX, startPosY, maxPoints) {
 		animateColor.setAttribute("to", arGradient[points-1].toHexString()) 
 		animateColor.setAttribute("dur", "2s") 
 		animateColor.setAttribute("repeatCount", "0") 
-		animateColor.setAttribute("begin", ((barNo * 100) + 1000) + "ms") 
+		animateColor.setAttribute("begin", barStartDelay) 
 		animateColor.setAttribute("fill", "freeze") 
 		
 		barElem.appendChild(animateElem)
