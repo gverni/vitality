@@ -78,6 +78,7 @@ function fetchStatement() {
 			xhrFetchData.onreadystatechange = function () {
 				if (xhrFetchData.readyState === 4) {
 					if (xhrFetchData.status === 200) {
+						closeModal()
 						convertRecordsToObj(xhrFetchData.response)
 						document.getElementById("userName").innerHTML  = Object.getOwnPropertyNames(objPoints)[0]
 						document.getElementById("spinner").setAttribute("visibility", "hidden")
@@ -97,11 +98,12 @@ function fetchStatement() {
 						}
 						document.getElementById("pastGraph").appendChild(groupElem)
 					} else {
-						document.getElementById("nameBaloonSvg").children[1].innerHTML = "Demo"
+						showModal()
+/* 						document.getElementById("nameBaloonSvg").children[1].innerHTML = "Demo"
 						document.getElementById("notifications").innerHTML = '<p>You are not logged into Vitality. Use the button below to open the login page.</p><p><a href="https://member.vitality.co.uk/Login" target="_blank" class="btn-pay-now"><span>LOG IN</span></a>'
 						bigGauge.startAnimation(70)
 						smallGauge.startAnimation(45) 
-					
+ */					
 					}
 					
 				}
@@ -112,34 +114,49 @@ function fetchStatement() {
 
 function showModal() {
 
-	var modal = document.getElementById('myModal');
-	modal.style.display = "block"
+	document.getElementById('myModal').style.display = "block"
 
 }
 
 function closeModal() {
 	
-	modal.style.display = "none";
+	document.getElementById('myModal').style.display = "none";
 	
 }
 
-function logIn() {
+function logIn(credentials) {
+	
+	console.log("https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=" + credentials["username"])
+	console.log('{UserName: "' + credentials["username"] + '", Password: "'+ credentials["password"] +'", RememberMe: false, RedirectToItemPath: "/"}')
 	
 	var xhrLogin = new XMLHttpRequest()
-	xhrLogin.open('POST', "https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=****", true)
+	xhrLogin.open('POST', "https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=" + credentials["username"], true)
 	xhrLogin.setRequestHeader("Content-type", "application/json;charset=UTF-8")
 	xhrLogin.onreadystatechange = function () {
 		if (xhrLogin.readyState === 4) {
-			fetchStatement()
+			console.log(JSON.parse(xhrLogin.response))
+			if (JSON.parse(xhrLogin.response)["Status"] === 200) {
+				// Authenitcation suucesful. Save credentials
+				chrome.storage.sync.set(credentials)
+				fetchStatement()
+			} else {
+				console.log("Authentication error")
+			}
 		}
 	}
-	xhrLogin.send('{UserName: "****", Password: "****", RememberMe: false, RedirectToItemPath: "/"}')
+	xhrLogin.send('{UserName: "' + credentials["username"] + '", Password: "'+ credentials["password"] +'", RememberMe: false, RedirectToItemPath: "/"}')
 	
+}
+
+document.getElementsByClassName("modal-btn")[0].onclick = function () {
+	logIn({username: document.getElementsByClassName("modal-user")[0].value, password: document.getElementsByClassName("modal-password")[0].value})
+	closeModal()	
 }
 
 
 var bigGauge = new gradientGauge(190)
-bigGauge.animationStartDelay = 300 // Delay needed because otherwise Pain event is not called everytime the interval event is fired 
+// Delay needed because otherwise paint event is not called everytime the interval event is fired 
+bigGauge.animationStartDelay = 300 
 bigGauge.buildGauge(document.getElementById("bigGauge"))
 
 var smallGauge = new gradientGauge(100)
@@ -148,7 +165,7 @@ smallGauge.buildGauge(document.getElementById("smallGauge"))
 
 storagePromisedGet().then(function(items) {
 	if (items["username"] && items["password"]) {
-		logIn() 
+		logIn(items)
 	} else {
 		showModal()
 		if (items["username"]) {
@@ -160,5 +177,4 @@ storagePromisedGet().then(function(items) {
 	console.log(error)	
 })
 
-// logIn()
 
