@@ -110,6 +110,19 @@ function fetchStatement() {
 	
 }
 
+function showModal() {
+
+	var modal = document.getElementById('myModal');
+	modal.style.display = "block"
+
+}
+
+function closeModal() {
+	
+	modal.style.display = "none";
+	
+}
+
 function logIn() {
 	
 	var xhrLogin = new XMLHttpRequest()
@@ -133,5 +146,10 @@ var smallGauge = new gradientGauge(100)
 smallGauge.animationStartDelay = 500  
 smallGauge.buildGauge(document.getElementById("smallGauge"))
 
-logIn()
+
+
+showModal()
+
+
+// logIn()
 
