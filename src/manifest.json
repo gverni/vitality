@@ -9,6 +9,8 @@
     "default_popup": "html/popup.html"
   }, 
   
-  "permissions": ["activeTab", "https://member.vitality.co.uk/*"]
+  "permissions": ["activeTab", "https://member.vitality.co.uk/*", "storage"]
+  
+  
   
 }

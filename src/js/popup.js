@@ -146,10 +146,19 @@ var smallGauge = new gradientGauge(100)
 smallGauge.animationStartDelay = 500  
 smallGauge.buildGauge(document.getElementById("smallGauge"))
 
+storagePromisedGet().then(function(items) {
+	if (items["username"] && items["password"]) {
+		logIn() 
+	} else {
+		showModal()
+		if (items["username"]) {
+			document.getElementById("modal-user").value = items["username"] 
+		}
+	}
 
-
-showModal()
-
+}, function(error) {
+	console.log(error)	
+})
 
 // logIn()
 
