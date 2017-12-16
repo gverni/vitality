@@ -6,6 +6,8 @@
 	<script src="../libs/tinygradient/tinygradient.min.js"></script>
 	<script src="../js/modules/gradientGauge.js"></script> 
 	<script src="../js/modules/gradientBar.js"></script> 
+	<script src="../js/modules/storagePromised.js"></script> 
+	<link rel="stylesheet" href="css/modal.css">
 	<style>
 	body {
 		margin: 24px; 
@@ -70,12 +72,27 @@
 	</style>
   </head>
   <body>
+   <!-- The Modal -->
+	<div id="myModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+		<div class="modal-alert"></div>
+	    <p class="modal-label">User</p>
+		<p><input type="text" class="modal-user"></input></p>
+		<p class="modal-label" class="modal-user">Password</p>
+		<p><input type="password" class="modal-password"></input></p>
+		<p><input type="button" class="modal-btn" value="login"></p>
+	  </div>
+
+	</div>
    <div id='popupsize'>
     <div id="top"><img src="../images/top.jpg" width="300px"></div>
 	<div id="nameBaloon">
 		<svg id="nameBaloonSvg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px" height="96px" viewBox="0 0 96 96">
 			<circle cx="48" cy="48" r="48" fill="#FF33FF"></circle>
-			<text x="48" y="48" text-anchor="middle" font-family="Verdana" font-size="15" style="fill: white">loading</text>
+			<image id="spinner" xlink:href="../images/tail-spin.svg" x="29" y="29"></image> <!-- Credit for laoder to http://samherbert.net/svg-loaders --> 
+			<text id="userName" x="48" y="48" text-anchor="middle" font-family="Verdana" font-size="15" style="fill: white"></text>
 		<svg> 
 	</div> 
 	<div id="bigGauge"></div>

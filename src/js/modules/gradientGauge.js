@@ -26,7 +26,7 @@ function gradientGauge (size) {
 	this.buildGauge = function (domElement) {
 
 		//svgOjb.setAttribute("id", this.svgId)
-		svgElem.setAttribute("id", "pippo") 
+		//svgElem.setAttribute("id", "pippo") 
 		svgElem.setAttribute("version", "1.1") 
 		svgElem.setAttribute("xmlns", "http://www.w3.org/2000/svg") 
 		svgElem.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink")
