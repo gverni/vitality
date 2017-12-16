@@ -1,12 +1,12 @@
-DISCLAIMER: THIS PROJECT IS NOT ENDORSED IN ANY WAY BY VITALITY 
+DISCLAIMER: THIS PROJECT IS NOT ENDORSED IN ANY WAY BY VITALITY
 
-# Vitality chrome extension 
-Chrome extension to create stats from Vitality point statement. This extension aims to use the data in the point statement to create better stats. 
+# Vitality chrome extension
+Let's be honest.... Vitality website is not the most compelling website. This extension was born to give to browser users a better experience with checking their vitality points.
 
 # Roadmap
-* Create page with weekly points (for 1+ users) 
-* Create "streaks" stats 
-* Autodetect of login into Vitality website
+* Create page with weekly points (done!)
+* Auto-login feature (done!)
+* Create "streaks" stats
 * ...
 
 # URLs
@@ -45,7 +45,7 @@ The basic element of the poitn statement is:
                 </li>
                 <li>
                     <div class="detail-four block-eqlheight">
-                        <span data-memberpoints="true" data-memberpointsval="5" 
+                        <span data-memberpoints="true" data-memberpointsval="5"
                               class="fields points">[This is the number of points]</span>
                     </div>
                 </li>
