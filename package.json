@@ -1,0 +1,22 @@
+{
+  "name": "vivacity",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gverni/vivacity.git"
+  },
+  "author": "gverni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gverni/vivacity/issues"
+  },
+  "homepage": "https://github.com/gverni/vivacity#readme",
+
+  "standard": {
+    "globals": [ "GradientBar", "GradientGauge", "tinygradient" ],
+    "env": ["browser", "webextensions"]
+  }
+}
