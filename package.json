@@ -16,7 +16,7 @@
   "homepage": "https://github.com/gverni/vivacity#readme",
 
   "standard": {
-    "globals": [ "GradientBar", "GradientGauge", "tinygradient" ],
+    "globals": [ "GradientBar", "GradientGauge", "tinygradient", "ExtensionStorage" ],
     "env": ["browser", "webextensions"]
   }
 }

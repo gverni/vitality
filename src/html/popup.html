@@ -4,48 +4,48 @@
     <title>Vitality Chrome Extension</title>
 	<script src="../libs/tinycolor/tinycolor-min.js"></script>
 	<script src="../libs/tinygradient/tinygradient.min.js"></script>
-	<script src="../js/modules/gradientGauge.js"></script> 
-	<script src="../js/modules/gradientBar.js"></script> 
-	<script src="../js/modules/storagePromised.js"></script> 
+	<script src="../js/modules/gradientGauge.js"></script>
+	<script src="../js/modules/gradientBar.js"></script>
+	<script src="../js/modules/ExtensionStorage.js"></script>
 	<link rel="stylesheet" href="css/modal.css">
 	<style>
 	body {
-		margin: 24px; 
-		height: 552px!important; 
+		margin: 24px;
+		height: 552px!important;
 	}
-	
+
 	#nameBaloon {
-		position: absolute; 
-		top: 120px; 
-		left: 122px; 
+		position: absolute;
+		top: 120px;
+		left: 122px;
 	}
-	
+
 	#bigGauge {
 		position: absolute;
 		top:230px;
 		left:24px;
 	}
-	
+
 	#smallGauge {
 		position: absolute;
 		top:380px;
 		left:215px;
 	}
-	
+
 	#notifications, {
 		position: absolute;
 		top: 480px;
-		width: 300px; 
+		width: 300px;
 	}
-	
+
 	#footerGraph  {
 		position: absolute;
 		top: 510px;
-		width: 300px; 
+		width: 300px;
 	}
-	
-	/* Vitality css */ 
-	
+
+	/* Vitality css */
+
 	.btn-pay-now{
 		font-size:17px;
 		font-family:hind,Arial,sans-serif;
@@ -63,12 +63,12 @@
 		height:35px!important;
 		text-transform:uppercase;
 		text-align: center;
-		line-height: 35px; 
-		
+		line-height: 35px;
+
 	}
-	
-	/* Vitality css */ 
-	
+
+	/* Vitality css */
+
 	</style>
   </head>
   <body>
@@ -91,20 +91,19 @@
 	<div id="nameBaloon">
 		<svg id="nameBaloonSvg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px" height="96px" viewBox="0 0 96 96">
 			<circle cx="48" cy="48" r="48" fill="#FF33FF"></circle>
-			<image id="spinner" xlink:href="../images/tail-spin.svg" x="29" y="29"></image> <!-- Credit for laoder to http://samherbert.net/svg-loaders --> 
+			<image id="spinner" xlink:href="../images/tail-spin.svg" x="29" y="29"></image> <!-- Credit for laoder to http://samherbert.net/svg-loaders -->
 			<text id="userName" x="48" y="48" text-anchor="middle" font-family="Verdana" font-size="15" style="fill: white"></text>
-		<svg> 
-	</div> 
+		<svg>
+	</div>
 	<div id="bigGauge"></div>
 	<div id="smallGauge"></div>
 	<div id="footerGraph">
 		<svg id="pastGraph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="74px" viewBox="0 0 300 74">
 			<text x="5" y="20" font-family="Verdana" font-size="14" style="fill: black">Past weeks progress</text>
-		</svg> 
+		</svg>
 	</div>
 	<div id="notifications"></div>
   </div>
   <script src="../js/popup.js"></script>
   </body>
 </html>
-
