@@ -1,3 +1,4 @@
+
 const urlStatement = 'https://member.vitality.co.uk/mvc/MyPoints/GetEventListByCategory?selectedIndexValue=&month=&member=&year=0'
 var objPoints = {}
 
@@ -63,7 +64,7 @@ function fetchStatement () {
 
         // Build past week graph
         let groupElem = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-        let pastGraphBars = new gradientBar(0, 72, 40)
+        let pastGraphBars = new GradientBar(0, 72, 40)
         pastGraphBars.animationStartDelay = 2000
         for (let barNo = 0; barNo < 30; barNo++) {
           groupElem.appendChild(pastGraphBars.generateBar(getWeeklypoints(thisWeekNo - barNo)))
@@ -112,12 +113,12 @@ document.getElementsByClassName('modal-btn')[0].onclick = function () {
   closeModal()
 }
 
-var bigGauge = new gradientGauge(190)
+var bigGauge = new GradientGauge(190)
 // Delay needed because otherwise paint event is not called everytime the interval event is fired
 bigGauge.animationStartDelay = 300
 bigGauge.buildGauge(document.getElementById('bigGauge'))
 
-var smallGauge = new gradientGauge(100)
+var smallGauge = new GradientGauge(100)
 smallGauge.animationStartDelay = 500
 smallGauge.buildGauge(document.getElementById('smallGauge'))
 
