@@ -122,12 +122,7 @@ var smallGauge = new GradientGauge(100)
 smallGauge.animationStartDelay = 500
 smallGauge.buildGauge(document.getElementById('smallGauge'))
 
-var extensionStorage = new ExtensionStorage()
-var credentials = extensionStorage.getData()
-console.log(credentials)
-
-/* 
-storagePromisedGet().then(function (items) {
+extensionStorage.getData().then(function (items) {
   if (items['username'] && items['password']) {
     logIn(items)
   } else {
@@ -138,4 +133,4 @@ storagePromisedGet().then(function (items) {
   }
 }, function (error) {
   console.log(error)
-})*/
+})
