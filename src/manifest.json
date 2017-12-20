@@ -9,6 +9,9 @@
     "default_popup": "html/popup.html"
   },
 
+  "icons": { "48": "48x48white.png",
+          "128": "128x128white.png" },
+
   "permissions": ["activeTab", "https://member.vitality.co.uk/*", "storage"]
 
 }
