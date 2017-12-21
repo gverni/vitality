@@ -11,7 +11,7 @@ window.GradientGauge = function (size) {
   this.points = 0
 
   /* "Private" */
-  var animationProgress = 0
+  var animationProgress = 1
   var svgElem = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
   var arGradient = tinygradient([
     {r: 255, g: 90, b: 205},
@@ -20,7 +20,7 @@ window.GradientGauge = function (size) {
 
   /* Methods */
   function logGauge (logMessage) {
-    // console.log(logMessage)
+     // console.log(logMessage)
   }
 
   this.buildGauge = function (domElement) {
@@ -66,7 +66,8 @@ window.GradientGauge = function (size) {
 
   function animateGauge () {
     logGauge('animateGauge step ' + animationProgress + ' of ' + this.points)
-    svgElem.children[animationProgress + 1].setAttribute('stroke', arGradient[animationProgress].toHexString())
+    var svgLines = svgElem.querySelectorAll('line')
+    svgLines[ animationProgress - 1 ].setAttribute('stroke', arGradient[ animationProgress - 1 ].toHexString())
     if (animationProgress === 26) {
       var rewardCircleElem = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
       rewardCircleElem.setAttribute('cx', this.size / 2)
