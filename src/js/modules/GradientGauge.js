@@ -83,7 +83,7 @@ window.GradientGauge = function (size) {
       rewardIconElem.setAttribute('y', (this.size - rewardIconElem.getAttribute('height')) / 2)
       svgElem.appendChild(rewardIconElem)
     }
-    if (animationProgress <= this.points) {
+    if (animationProgress < this.points) {
       animationProgress++
       setTimeout(animateGauge.bind(this), this.animationSpeedStart + Math.floor((this.animationSpeedStop - this.animationSpeedStart) * animationProgress / this.points))
       logGauge(this.animationSpeedStart + Math.floor((this.animationSpeedStop - this.animationSpeedStart) * animationProgress / this.points))
