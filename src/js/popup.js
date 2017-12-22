@@ -98,7 +98,9 @@ function logIn (credentials) {
       console.log(JSON.parse(xhrLogin.response))
       if (JSON.parse(xhrLogin.response)['Status'] === 200) {
         // Authenitcation suucesful. Save credentials
-        chrome.storage.sync.set(credentials)
+        if (document.getElementById('chkrememberme').checked) {
+          chrome.storage.sync.set(credentials)
+        }
         fetchStatement()
       } else {
         console.log('Authentication error')
