@@ -1,6 +1,9 @@
-DISCLAIMER: THIS PROJECT IS NOT ENDORSED IN ANY WAY BY VITALITY
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 # Vitality chrome extension
+
+*** DISCLAIMER: THIS PROJECT IS NOT ENDORSED IN ANY WAY BY VITALITY ***
+
 Let's be honest.... Vitality website is not the most compelling website. This extension was born to give to browser users a better experience with checking their vitality points.
 
 # Roadmap
@@ -53,3 +56,4 @@ The basic element of the poitn statement is:
         </div>
     </li>
 ```
+
