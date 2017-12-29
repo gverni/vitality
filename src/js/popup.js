@@ -111,7 +111,10 @@ function logIn (credentials) {
 }
 
 document.getElementsByClassName('modal-btn')[0].onclick = function () {
-  logIn({username: document.getElementsByClassName('modal-user')[0].value, password: document.getElementsByClassName('modal-password')[0].value})
+  logIn({username: document.getElementsByClassName('modal-user')[0].value,
+    password: document.getElementsByClassName('modal-password')[0].value,
+    autologin: document.getElementById('autologin').checked
+  })
   closeModal()
 }
 
@@ -125,13 +128,13 @@ smallGauge.animationStartDelay = 500
 smallGauge.buildGauge(document.getElementById('smallGauge'))
 
 extensionStorage.getData().then(function (items) {
-  if (items['username'] && items['password']) {
+  if (items['username'] && items['password'] && items['autologin']) {
     logIn(items)
   } else {
     showModal()
-    if (items['username']) {
-      document.getElementById('modal-user').value = items['username']
-    }
+    if (items['username']) { document.getElementsByClassName('modal-user')[0].value = items['username'] }
+    if (items['password']) { document.getElementsByClassName('modal-password')[0].value = items['password'] }
+    if (items['autologin']) { document.getElementById['autologin'].checked = true }
   }
 }, function (error) {
   console.log(error)
