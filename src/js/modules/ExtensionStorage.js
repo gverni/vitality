@@ -1,7 +1,4 @@
 var ExtensionStorage = function () {
-//  var storageObj = undefined // Chrome Storage object
-//  var fetching = false // Fetching variable. If true fetching is on-going
-
   this.getData = function () {
     return new Promise(function (resolve, reject) {
       chrome.storage.sync.get(null, function (items) {
@@ -10,27 +7,13 @@ var ExtensionStorage = function () {
       })
     })
   }
-  //
-  // storagePromisedGet().then(function (items) {
-  //     console.log("then promise")
-  //     return items
-  // }, function (error) {
-  //     console.log("error promise")
-  //     return { 'error': error }
-  //   })
-  // }
 
-  // this.getData = function _getData() {
-  //   if (fetching) {
-  //     // Set a timer and retry
-  //     setTimeout(_getData, 100)
-  //   } else if (!storageObj) {
-  //     // we need to fetch it
-  //   }
-  // }
-
-  this.setData = function () {
-    // Set data
+  this.setData = function (items) {
+    return new Promise(function (resolve, reject) {
+      chrome.storage.sync.set(items, function () {
+        resolve()
+      })
+    })
   }
 }
 

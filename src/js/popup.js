@@ -99,7 +99,7 @@ function logIn (credentials) {
       if (JSON.parse(xhrLogin.response)['Status'] === 200) {
         // Authenitcation suucesful. Save credentials
         if (document.getElementById('chkrememberme').checked) {
-          chrome.storage.sync.set(credentials)
+          extensionStorage.setData(credentials)
         }
         fetchStatement()
       } else {
