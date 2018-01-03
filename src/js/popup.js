@@ -16,17 +16,18 @@ Date.prototype.getWeek = function () {
 }
 
 const thisWeekNo = (new Date()).getWeek()
-const thisYear = (new Date()).getFullYear()
 
 function getWeeklypoints (weekNo) {
   var totWeek = 0
-
+  if (weekNo <= 0) {
+    // WeekNo negative = go backwards to last year
+    weekNo += 52
+  }
 // TODO: plot more than one user. Currently this is plotting only the first user
   let user = Object.getOwnPropertyNames(objPoints)[0]
   if (objPoints[user].hasOwnProperty(weekNo)) {
     totWeek = objPoints[user][weekNo].reduce(function (a, b) { return { Points: a['Points'] + b['Points'] } })['Points']
   }
-
   return totWeek
 }
 
@@ -37,12 +38,14 @@ function convertRecordsToObj (strDOM) {
   var elFirstNames = elTmp.querySelectorAll('.firstname')
   var elPoints = elTmp.querySelectorAll('.points')
   elDates.forEach(function (elDate, index) {
-    var dateWeekNo = (new Date(elDate.textContent + ' ' + thisYear)).getWeek()
+    // Vitality page returns date without year. Calculate the year checking if applying current year makes the date in the future
+    let fullDate = elDate.textContent + ((new Date(elDate.textContent + (new Date()).getFullYear()) > new Date()) ? (new Date()).getFullYear() - 1 : (new Date()).getFullYear())
+    var dateWeekNo = (new Date(fullDate)).getWeek()
     var firstName = elFirstNames[index].textContent
     if (!objPoints.hasOwnProperty(firstName)) { objPoints[firstName] = {} }
     if (!objPoints[firstName].hasOwnProperty(dateWeekNo)) { objPoints[firstName][dateWeekNo] = [] }
     if (elPoints[index].textContent !== '0') {
-      objPoints[firstName][dateWeekNo].push({ Name: firstName, Date: elDate.textContent + ' ' + thisYear, WeekNo: parseInt(dateWeekNo), Points: parseInt(elPoints[index].textContent) })
+      objPoints[firstName][dateWeekNo].push({ Name: firstName, Date: fullDate, WeekNo: parseInt(dateWeekNo), Points: parseInt(elPoints[index].textContent) })
     }
   })
 }
