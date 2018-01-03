@@ -34,21 +34,40 @@ window.GradientGauge = function (size) {
     svgElem.setAttribute('viewBox', '0 0 ' + this.size + ' ' + this.size)
     svgElem.setAttribute('xml:space', 'preserve')
 
-    var outerCircleElem = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
-    outerCircleElem.setAttribute('cx', this.size / 2)
-    outerCircleElem.setAttribute('cy', this.size / 2)
-    outerCircleElem.setAttribute('r', this.size / 2)
-    outerCircleElem.setAttribute('fill', 'rgb(240, 240, 240)')
-    svgElem.appendChild(outerCircleElem)
+    var circlesElem = document.createElementNS('http://www.w3.org/2000/svg', 'image')
+    circlesElem.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../images/cerchio.svg')
+    circlesElem.setAttribute('height', this.size)
+    circlesElem.setAttribute('width', this.size)
+    circlesElem.setAttribute('x', (this.size - circlesElem.getAttribute('width')) / 2)
+    circlesElem.setAttribute('y', (this.size - circlesElem.getAttribute('height')) / 2)
+    svgElem.appendChild(circlesElem)
+
+    // var outerCircleElem = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+    // outerCircleElem.setAttribute('cx', this.size / 2)
+    // outerCircleElem.setAttribute('cy', this.size / 2)
+    // outerCircleElem.setAttribute('r', this.size / 2)
+    // outerCircleElem.setAttribute('fill', '#F7F7F9')
+    // svgElem.appendChild(outerCircleElem)
+    //
+    // var innerShadowGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+    // var innerShadow = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+    //
+    // // Inner circle = outer circle * 0.7311
+    // var innerCircleElem = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+    // outerCircleElem.setAttribute('cx', this.size * 0.7311 / 2)
+    // outerCircleElem.setAttribute('cy', this.size * 0.7311 / 2)
+    // outerCircleElem.setAttribute('r', this.size * 0.7311 / 2)
+    // outerCircleElem.setAttribute('fill', '#FFFFFF')
+    // svgElem.appendChild(innerCircleElem)
 
     for (let i = 0; i < this.numBars; i++) {
       let lineElem = document.createElementNS('http://www.w3.org/2000/svg', 'line')
       lineElem.setAttribute('stroke', 'rgb(256, 256, 256)')
       lineElem.setAttribute('stroke-width', '2')
       lineElem.setAttribute('x1', this.size / 2) // 100
-      lineElem.setAttribute('y1', this.size / 17.27) // 5
+      lineElem.setAttribute('y1', (this.size / 2) / 9.3) // 5 =
       lineElem.setAttribute('x2', this.size / 2) // 100
-      lineElem.setAttribute('y2', this.size / 10) // 25
+      lineElem.setAttribute('y2', (this.size / 2) / 6.2) // 25
       lineElem.setAttribute('transform', 'rotate(' + 360 / this.numBars * i + ', ' + this.size / 2 + ', ' + this.size / 2 + ')')
       svgElem.appendChild(lineElem)
     }

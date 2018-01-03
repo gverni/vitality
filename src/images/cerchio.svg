@@ -1,0 +1,24 @@
+<svg width="186" height="186" viewBox="0 0 186 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Main</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(1579 810)">
+<g id="cerchio1">
+<use xlink:href="#path0_fill" transform="translate(-1579 -810)" fill="#F7F7F9"/>
+</g>
+<g id="cerchio 2 ombra" filter="url(#filter0_f)">
+<use xlink:href="#path1_fill" transform="translate(-1554 -785)" fill="#E0E0E0"/>
+</g>
+<g id="cerchio 3 bianco">
+<use xlink:href="#path1_fill" transform="translate(-1554 -785)" fill="#FFFFFF"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f" filterUnits="userSpaceOnUse" x="-1564" y="-795" width="156" height="156" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur"/>
+</filter>
+<path id="path0_fill" d="M 186 93C 186 144.362 144.362 186 93 186C 41.6375 186 0 144.362 0 93C 0 41.6375 41.6375 0 93 0C 144.362 0 186 41.6375 186 93Z"/>
+<path id="path1_fill" d="M 136 68C 136 105.555 105.555 136 68 136C 30.4446 136 0 105.555 0 68C 0 30.4446 30.4446 0 68 0C 105.555 0 136 30.4446 136 68Z"/>
+</defs>
+</svg>
