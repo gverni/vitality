@@ -130,6 +130,16 @@ var smallGauge = new GradientGauge(100)
 smallGauge.animationStartDelay = 500
 smallGauge.buildGauge(document.getElementById('smallGauge'))
 
+document.getElementById('btn-close').onclick = function () { window.close() }
+document.getElementById('btn-options').onclick = function () {
+  window.close()
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage()
+  } else {
+    window.open(chrome.runtime.getURL('options.html'))
+  }
+}
+
 extensionStorage.getData().then(function (items) {
   if (items['username'] && items['password'] && items['autologin']) {
     logIn(items)
