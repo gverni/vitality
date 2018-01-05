@@ -92,7 +92,7 @@ window.GradientGauge = function (size) {
       rewardCircleElem.setAttribute('cx', this.size / 2)
       rewardCircleElem.setAttribute('cy', this.size / 2)
       rewardCircleElem.setAttribute('r', this.size / 5)
-      rewardCircleElem.setAttribute('fill', 'rgb(255, 255, 0)')
+      rewardCircleElem.setAttribute('fill', '#FDF780')
       svgElem.appendChild(rewardCircleElem)
 
       var rewardIconElem = document.createElementNS('http://www.w3.org/2000/svg', 'image')
