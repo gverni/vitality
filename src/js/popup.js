@@ -67,7 +67,7 @@ function fetchStatement () {
 
         // Build past week graph
         let groupElem = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-        let pastGraphBars = new GradientBar(0, 72, 40)
+        let pastGraphBars = new GradientBar(0, 28, 40)
         pastGraphBars.animationStartDelay = 2000
         for (let barNo = 0; barNo < 30; barNo++) {
           groupElem.appendChild(pastGraphBars.generateBar(getWeeklypoints(thisWeekNo - barNo)))
