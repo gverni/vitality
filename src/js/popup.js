@@ -90,15 +90,11 @@ function closeModal () {
 }
 
 function logIn (credentials) {
-  console.log('https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=' + credentials['username'])
-  console.log('{UserName: "' + credentials['username'] + '", Password: "' + credentials['password'] + '", RememberMe: false, RedirectToItemPath: "/"}')
-
   var xhrLogin = new XMLHttpRequest()
   xhrLogin.open('POST', 'https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=' + credentials['username'], true)
   xhrLogin.setRequestHeader('Content-type', 'application/json;charset=UTF-8')
   xhrLogin.onreadystatechange = function () {
     if (xhrLogin.readyState === 4) {
-      console.log(JSON.parse(xhrLogin.response))
       if (JSON.parse(xhrLogin.response)['Status'] === 200) {
         // Authenitcation suucesful. Save credentials
         if (document.getElementById('chkrememberme').checked) {
@@ -106,7 +102,7 @@ function logIn (credentials) {
         }
         fetchStatement()
       } else {
-        console.log('Authentication error')
+        showModal()
       }
     }
   }
@@ -152,5 +148,5 @@ extensionStorage.getData().then(function (items) {
     if (items['autologin']) { document.getElementById('autologin').checked = true }
   }
 }, function (error) {
-  console.log(error)
+  console.log('Storage error' + error)
 })
