@@ -12,6 +12,11 @@
   "icons": { "48": "48x48white.png",
           "128": "128x128white.png" },
 
+  "options_ui": {
+    "page": "html/options.html",
+    "chrome_style": true
+  },
+
   "permissions": ["activeTab", "https://member.vitality.co.uk/*", "storage"]
 
 }
