@@ -147,7 +147,7 @@ extensionStorage.getData().then(function (items) {
     showModal()
     if (items['username']) { document.getElementsByClassName('modal-user')[0].value = items['username'] }
     if (items['password']) { document.getElementsByClassName('modal-password')[0].value = items['password'] }
-    if (items['autologin']) { document.getElementById['autologin'].checked = true }
+    if (items['autologin']) { document.getElementById('autologin').checked = true }
   }
 }, function (error) {
   console.log(error)
