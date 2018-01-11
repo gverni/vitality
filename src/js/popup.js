@@ -114,11 +114,13 @@ function logIn (credentials) {
 }
 
 document.getElementsByClassName('modal-btn')[0].onclick = function () {
-  logIn({username: document.getElementsByClassName('modal-user')[0].value,
-    password: document.getElementsByClassName('modal-password')[0].value,
-    autologin: document.getElementById('autologin').checked
-  })
-  closeModal()
+  if (document.getElementsByClassName('modal-password')[0].value && document.getElementsByClassName('modal-user')[0].value) {
+    logIn({username: document.getElementsByClassName('modal-user')[0].value,
+      password: document.getElementsByClassName('modal-password')[0].value,
+      autologin: document.getElementById('autologin').checked
+    })
+    closeModal()
+  }
 }
 
 var bigGauge = new GradientGauge(190)
