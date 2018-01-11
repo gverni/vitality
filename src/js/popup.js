@@ -90,15 +90,11 @@ function closeModal () {
 }
 
 function logIn (credentials) {
-  console.log('https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=' + credentials['username'])
-  console.log('{UserName: "' + credentials['username'] + '", Password: "' + credentials['password'] + '", RememberMe: false, RedirectToItemPath: "/"}')
-
   var xhrLogin = new XMLHttpRequest()
   xhrLogin.open('POST', 'https://member.vitality.co.uk/mvc/LogOn/LogOnUser?Username=' + credentials['username'], true)
   xhrLogin.setRequestHeader('Content-type', 'application/json;charset=UTF-8')
   xhrLogin.onreadystatechange = function () {
     if (xhrLogin.readyState === 4) {
-      console.log(JSON.parse(xhrLogin.response))
       if (JSON.parse(xhrLogin.response)['Status'] === 200) {
         // Authenitcation suucesful. Save credentials
         if (document.getElementById('chkrememberme').checked) {
@@ -106,7 +102,7 @@ function logIn (credentials) {
         }
         fetchStatement()
       } else {
-        console.log('Authentication error')
+        showModal()
       }
     }
   }
@@ -114,11 +110,13 @@ function logIn (credentials) {
 }
 
 document.getElementsByClassName('modal-btn')[0].onclick = function () {
-  logIn({username: document.getElementsByClassName('modal-user')[0].value,
-    password: document.getElementsByClassName('modal-password')[0].value,
-    autologin: document.getElementById('autologin').checked
-  })
-  closeModal()
+  if (document.getElementsByClassName('modal-password')[0].value && document.getElementsByClassName('modal-user')[0].value) {
+    logIn({username: document.getElementsByClassName('modal-user')[0].value,
+      password: document.getElementsByClassName('modal-password')[0].value,
+      autologin: document.getElementById('autologin').checked
+    })
+    closeModal()
+  }
 }
 
 var bigGauge = new GradientGauge(190)
@@ -147,8 +145,8 @@ extensionStorage.getData().then(function (items) {
     showModal()
     if (items['username']) { document.getElementsByClassName('modal-user')[0].value = items['username'] }
     if (items['password']) { document.getElementsByClassName('modal-password')[0].value = items['password'] }
-    if (items['autologin']) { document.getElementById['autologin'].checked = true }
+    if (items['autologin']) { document.getElementById('autologin').checked = true }
   }
 }, function (error) {
-  console.log(error)
+  console.log('Storage error' + error)
 })
