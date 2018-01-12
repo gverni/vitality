@@ -3,7 +3,7 @@
 
   "name": "Vitality Extension",
   "description": "Vitality Chrome Extention to cretae stats from point statement",
-  "version": "0.1.0",
+  "version": "0.9.1",
 
   "browser_action": {
     "default_popup": "html/popup.html"
