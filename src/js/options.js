@@ -11,7 +11,6 @@ document.getElementById('btnForget').onclick = function () {
 }
 
 extensionStorage.getData().then(function (items) {
-  console.log(JSON.stringify(items))
   document.getElementById('autologin').checked = items['autologin']
 }, function (error) {
   console.log(error)
