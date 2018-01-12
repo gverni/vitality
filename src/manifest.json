@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Vivacity - Vitality Extension",
+  "name": "Vivacity",
   "description": "Vivacity - Chrome extensions to check your Vitality points",
   "version": "0.9.1",
 
