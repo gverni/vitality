@@ -1,0 +1,14 @@
+.button {
+  background: rgb(247, 48, 107);
+  border-radius: 4px;
+  font-family: Mukta Malar;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: 0; /* Remove border */
+}
+
+.button:hover {
+  background: rgb(221, 8, 72);
+}
