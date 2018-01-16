@@ -94,7 +94,7 @@ function fetchStatement (memberNumber) {
           var nameBox = document.getElementById('userName').getBBox()
           if (nameBox.width > maxWidth) {
             var ratio = maxWidth / nameBox.width
-            var svgTransformMatrix = 'matrix(' + ratio + ' 0 0 ' + ratio + ' ' + (Math.abs(nameBox.x))  + ' ' + (nameBox.height * ratio / 2) + ' )'
+            var svgTransformMatrix = 'matrix(' + ratio + ' 0 0 ' + ratio + ' ' + (0 - nameBox.x) + ' ' + (nameBox.height * ratio / 2) + ' )'
             document.getElementById('userName').setAttribute('transform', svgTransformMatrix)
           }
         })()
