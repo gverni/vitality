@@ -33,7 +33,7 @@ window.GradientBar = function (startPosX, startPosY, maxPoints) {
     animateColor.setAttribute('attributeType', 'XML')
     animateColor.setAttribute('attributeName', 'stroke')
     animateColor.setAttribute('from', arGradient[0].toHexString())
-    animateColor.setAttribute('to', arGradient[points - 1].toHexString())
+    animateColor.setAttribute('to', (points > 0) ? arGradient[points - 1].toHexString() : arGradient[0].toHexString())
     animateColor.setAttribute('dur', '2s')
     animateColor.setAttribute('repeatCount', '0')
     animateColor.setAttribute('begin', barStartDelay)
