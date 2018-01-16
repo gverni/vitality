@@ -1,5 +1,5 @@
 
-const urlStatement = 'https://member.vitality.co.uk/mvc/MyPoints/GetEventListByCategory?selectedIndexValue=&month=&member=&year=0'
+const urlStatement = 'https://member.vitality.co.uk/mvc/MyPoints/GetEventListByCategory?year=0&member='
 var objPoints = {}
 
 // Returns the ISO week of the date.
@@ -16,6 +16,23 @@ Date.prototype.getWeek = function () {
 }
 
 const thisWeekNo = (new Date()).getWeek()
+
+function httpRequestPromise (url) {
+  return new Promise(function (resolve, reject) {
+    var xhrFetchData = new XMLHttpRequest()
+    xhrFetchData.open('GET', url, true)
+    xhrFetchData.onreadystatechange = function () {
+      if (xhrFetchData.readyState === 4) {
+        if (xhrFetchData.status === 200) {
+          resolve(xhrFetchData)
+        } else {
+          reject(xhrFetchData)
+        }
+      }
+    }
+    xhrFetchData.send()
+  })
+}
 
 function getWeeklypoints (weekNo) {
   var totWeek = 0
@@ -50,9 +67,25 @@ function convertRecordsToObj (strDOM) {
   })
 }
 
-function fetchStatement () {
+
+function fetchMembershipInfo () {
+  return new Promise(function (resolve, reject) {
+    httpRequestPromise('https://member.vitality.co.uk').then(function (data) {
+      var results = /<label id="membershipnumberlabel" class="per-info">([0-9]*)<\/label>/.exec(data.response)
+      if (results) {
+        resolve(results[1])
+      } else {
+        reject('Membership number not found')
+      }
+    })
+  })
+}
+
+
+
+function fetchStatement (memberNumber) {
   var xhrFetchData = new XMLHttpRequest()
-  xhrFetchData.open('GET', urlStatement, true)
+  xhrFetchData.open('GET', urlStatement + memberNumber, true)
   xhrFetchData.onreadystatechange = function () {
     if (xhrFetchData.readyState === 4) {
       if (xhrFetchData.status === 200) {
@@ -100,7 +133,9 @@ function logIn (credentials) {
         if (document.getElementById('chkrememberme').checked) {
           extensionStorage.setData(credentials)
         }
-        fetchStatement()
+        fetchMembershipInfo().then((memberNumber) => {
+          fetchStatement(memberNumber)
+        })
       } else {
         showModal()
       }
