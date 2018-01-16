@@ -89,6 +89,7 @@ function fetchStatement (memberNumber) {
         closeModal()
         convertRecordsToObj(xhrFetchData.response)
         document.getElementById('userName').innerHTML = Object.getOwnPropertyNames(objPoints)[0]
+        document.getElementById('memberNumber').innerHTML = memberNumber
         ;(function autoFitName () {
           const maxWidth = 92
           var nameBox = document.getElementById('userName').getBBox()
