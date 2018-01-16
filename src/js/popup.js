@@ -67,7 +67,6 @@ function convertRecordsToObj (strDOM) {
   })
 }
 
-
 function fetchMembershipInfo () {
   return new Promise(function (resolve, reject) {
     httpRequestPromise('https://member.vitality.co.uk').then(function (data) {
@@ -81,8 +80,6 @@ function fetchMembershipInfo () {
   })
 }
 
-
-
 function fetchStatement (memberNumber) {
   var xhrFetchData = new XMLHttpRequest()
   xhrFetchData.open('GET', urlStatement + memberNumber, true)
@@ -92,10 +89,18 @@ function fetchStatement (memberNumber) {
         closeModal()
         convertRecordsToObj(xhrFetchData.response)
         document.getElementById('userName').innerHTML = Object.getOwnPropertyNames(objPoints)[0]
+        ;(function autoFitName () {
+          const maxWidth = 92
+          var nameBox = document.getElementById('userName').getBBox()
+          if (nameBox.width > maxWidth) {
+            var ratio = maxWidth / nameBox.width
+            var svgTransformMatrix = 'matrix(' + ratio + ' 0 0 ' + ratio + ' ' + (Math.abs(nameBox.x))  + ' ' + (nameBox.height * ratio / 2) + ' )'
+            document.getElementById('userName').setAttribute('transform', svgTransformMatrix)
+          }
+        })()
+        /* Hide the spinner to show the name */
         document.getElementById('spinner').setAttribute('visibility', 'hidden')
-
         bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
-        // TODO: Handle first week of the year
         smallGauge.startAnimation(getWeeklypoints(thisWeekNo - 1) * 2)
 
         // Build past week graph
