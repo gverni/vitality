@@ -3,7 +3,7 @@
 
   "name": "Vivacity",
   "description": "Vivacity - Chrome extensions to check your Vitality points",
-  "version": "0.9.1",
+  "version": "0.9.2",
 
   "browser_action": {
     "default_popup": "html/popup.html"
