@@ -139,7 +139,7 @@ function logIn (credentials) {
         if (document.getElementById('chkrememberme').checked) {
           extensionStorage.setData(credentials)
         }
-        fetchMembershipInfo().then((memberNumber) => {
+        vitality.getMembershipNumber().then((memberNumber) => {
           fetchStatement(memberNumber)
         })
       } else {
