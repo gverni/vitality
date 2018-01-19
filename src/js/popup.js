@@ -91,7 +91,7 @@ function fetchStatement (memberNumber) {
         document.getElementById('userName').innerHTML = Object.getOwnPropertyNames(objPoints)[0]
         document.getElementById('memberNumber').innerHTML = memberNumber
         ;(function autoFitName () {
-          const maxWidth = 92
+          const maxWidth = 100
           var nameBox = document.getElementById('userName').getBBox()
           if (nameBox.width > maxWidth) {
             var ratio = maxWidth / nameBox.width
