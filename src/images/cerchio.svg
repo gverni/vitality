@@ -1,19 +1,15 @@
 <svg width="186" height="186" viewBox="0 0 186 186" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<title>Main</title>
-<desc>Created using Figma</desc>
-<g id="Canvas" transform="translate(1579 810)">
 <g id="cerchio1">
-<use xlink:href="#path0_fill" transform="translate(-1579 -810)" fill="#F7F7F9"/>
+<use xlink:href="#path0_fill" fill="#F7F7F9"/>
 </g>
 <g id="cerchio 2 ombra" filter="url(#filter0_f)">
-<use xlink:href="#path1_fill" transform="translate(-1554 -785)" fill="#E0E0E0"/>
+<use xlink:href="#path1_fill" transform="translate(25 25)" fill="#E0E0E0"/>
 </g>
 <g id="cerchio 3 bianco">
-<use xlink:href="#path1_fill" transform="translate(-1554 -785)" fill="#FFFFFF"/>
-</g>
+<use xlink:href="#path1_fill" transform="translate(25 25)" fill="#FFFFFF"/>
 </g>
 <defs>
-<filter id="filter0_f" filterUnits="userSpaceOnUse" x="-1564" y="-795" width="156" height="156" color-interpolation-filters="sRGB">
+<filter id="filter0_f" filterUnits="userSpaceOnUse" x="15" y="15" width="156" height="156" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur"/>
