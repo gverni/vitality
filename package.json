@@ -2,7 +2,7 @@
   "name": "vivacity",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "zip -r build/vivacity.zip src/* "
   },
   "repository": {
     "type": "git",
