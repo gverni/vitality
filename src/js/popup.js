@@ -164,10 +164,12 @@ var bigGauge = new GradientGauge(190)
 // Delay needed because otherwise paint event is not called everytime the interval event is fired
 bigGauge.animationStartDelay = 300
 bigGauge.buildGauge(document.getElementById('bigGauge'))
+bigGauge.setCaption('this week', '20%')
 
 var smallGauge = new GradientGauge(100)
 smallGauge.animationStartDelay = 500
 smallGauge.buildGauge(document.getElementById('smallGauge'))
+smallGauge.setCaption('last week', '55%')
 
 document.getElementById('btn-close').onclick = function () { window.close() }
 document.getElementById('btn-options').onclick = function () {
