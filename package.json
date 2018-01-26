@@ -2,7 +2,7 @@
   "name": "vivacity",
   "version": "1.0.0",
   "scripts": {
-    "build": "zip -r build/vivacity.zip src/* "
+    "build": "./build.sh"
   },
   "repository": {
     "type": "git",
