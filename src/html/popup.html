@@ -38,34 +38,57 @@
 		left:215px;
 	}
 
-  #footerLogo {
+	#pointsValue {
     position: absolute;
-    top: 502px;
-    left: 275px;
-  }
+    left: 23px; /* align to label */ 
+    bottom: 127px;
 
-  #footerGraph  {
-		position: absolute;
-		top: 509px;
-    left: 18px;
-		width: 216px;
-    height: 28px;
+		font-family: Mukta Malar;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 24px;
+    color: #828282;
 	}
 
-  #footerLabel {
-    position: absolute;
-    height: 24px;
-    left: 18px;
-    top: 535px;
-
+	.label {
     font-family: Mukta Malar;
     font-style: normal;
     font-weight: normal;
     line-height: normal;
-    font-size: 14px;
+    font-size: 11px;
     text-align: center;
+    color:white;
 
-    color: #828282;
+		background: #F7306B;
+		border-radius: 10px;
+		padding: 1px 5px 1px 5px; 
+  }
+
+	#pointsLabel {
+		position: absolute;
+    left: 18px;
+    bottom: 113px;
+	}
+
+	#footerLabel {
+    position: absolute;
+    left: 18px;
+    bottom: 80px;
+  }
+
+  #footerGraph  {
+		position: absolute;
+		bottom: 45px;
+    left: 18px;
+		width: 230px;
+    height: 28px;
+	}
+
+  #footerLogo {
+    position: absolute;
+    top: 502px;
+    left: 275px;
   }
 
   #footerBar {
@@ -77,6 +100,7 @@
     background-color:#F8306E;
     border: 0;
   }
+  
 
 	</style>
   </head>
@@ -115,7 +139,9 @@
 		<svg id="pastGraph" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="216px" height="28px" viewBox="0 0 216 28">
 		</svg>
 	</div>
-  <div id="footerLabel">Past weeks progress (most recent first)</div>
+	<div id="pointsValue">--</div>
+	<div id="pointsLabel" class="label">POINTS TOTAL</div>
+  <div id="footerLabel" class="label">PAST WEEKS PROGRESS</div>
   <div id="footerBar">
     <img src="/images/settings.png" id="btn-options" style="padding-left: 20px; padding-top: 12px;">
     <img src="/images/close.png" id="btn-close" style="padding-top: 12px; padding-right: 20px; float: right;"></div>
