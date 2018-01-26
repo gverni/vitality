@@ -67,6 +67,13 @@ function convertRecordsToObj (strDOM) {
   })
 }
 
+function fetchTotalPoints () {
+  httpRequestPromise('https://member.vitality.co.uk/mvc/vitalityglobal/RefreshHeaderData').then((data) => {
+    var responseJSON = JSON.parse(data.response)
+    document.getElementById('pointsTotal').textContent = responseJSON['VitalityPoints']
+  })
+}
+
 function fetchMembershipInfo () {
   return new Promise(function (resolve, reject) {
     httpRequestPromise('https://member.vitality.co.uk').then(function (data) {
@@ -101,6 +108,11 @@ function fetchStatement (memberNumber) {
         })()
         /* Hide the spinner to show the name */
         document.getElementById('spinner').setAttribute('visibility', 'hidden')
+
+        /* Update the total points */ 
+        fetchTotalPoints()
+
+        /* Start gauges aninamtion */
         bigGauge.startAnimation(getWeeklypoints(thisWeekNo) * 2)
         smallGauge.startAnimation(getWeeklypoints(thisWeekNo - 1) * 2)
 
