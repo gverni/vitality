@@ -70,7 +70,8 @@ function convertRecordsToObj (strDOM) {
 function fetchTotalPoints () {
   httpRequestPromise('https://member.vitality.co.uk/mvc/vitalityglobal/RefreshHeaderData').then((data) => {
     var responseJSON = JSON.parse(data.response)
-    document.getElementById('pointsTotal').textContent = responseJSON['VitalityPoints']
+    document.getElementById('pointsTotal').innerHTML = responseJSON['VitalityPoints'] +
+    ' <span style="font-size: 16px;">(' + responseJSON['VitalityPointsStatus'] + ')</span>'
   })
 }
 
