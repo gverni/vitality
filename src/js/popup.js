@@ -61,7 +61,9 @@ function convertRecordsToObj (strDOM) {
     var firstName = elFirstNames[index].textContent
     if (!objPoints.hasOwnProperty(firstName)) { objPoints[firstName] = {} }
     if (!objPoints[firstName].hasOwnProperty(dateWeekNo)) { objPoints[firstName][dateWeekNo] = [] }
-    if (elPoints[index].textContent !== '0') {
+    if ((parseInt(elPoints[index].textContent) > 0) && (parseInt(elPoints[index].textContent) <= 10)) {
+      // We consider only points between 1 and 10. More than 10 are 
+      // non-active points (e.g. health check)
       objPoints[firstName][dateWeekNo].push({ Name: firstName, Date: fullDate, WeekNo: parseInt(dateWeekNo), Points: parseInt(elPoints[index].textContent) })
     }
   })
